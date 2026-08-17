@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23 Scripts do(a) [SEU NOME]</title>
+    <style>
+        /* Estilos Gerais e Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            /* Fundo que transiciona entre roxo e roxo escuro */
+            background: linear-gradient(135deg, #4b0082, #1a0033, #0d001a);
+            background-size: 400% 400%;
+            animation: gradientBg 15s ease infinite;
+        }
+
+        @keyframes gradientBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Canvas das Estrelas */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Estrutura da Página */
+        header, main, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: rgba(26, 0, 51, 0.75);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8a2be2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .perfil-container {
+            position: relative;
+        }
+
+        .perfil-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #8a2be2;
+            box-shadow: 0 0 20px #8a2be2;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #8a2be2;
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Grid de Botões */
+        .grid-botoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .btn-script {
+            background: rgba(138, 43, 226, 0.2);
+            color: #fff;
+            border: 2px solid #8a2be2;
+            padding: 15px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-script:hover {
+            background: #8a2be2;
+            box-shadow: 0 0 15px #bb86fc;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: rgba(13, 0, 26, 0.9);
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #4b0082;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Estilo do Terminal/Resultado customizado (Opcional, os scripts usarão prompt/alert/confirm como pedido) */
+        .instrucao {
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #d8b4fe;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="starsCanvas"></canvas>
+
+    <header>
+        <div class="perfil-container">
+            <img src= foto.png alt="Foto de [SEU NOME]">
+        </div>
+        <h1>23 SCRIPTS DA NICOLE</h1>
+    </header>
+
+    <main>
+        <p class="instrucao">Clique em qualquer um dos botões abaixo para executar o script correspondente.</p>
+        
+        <div class="grid-botoes">
+            <button class="btn-script" onclick="script1()">1) Vogal ou Consoante</button>
+            <button class="btn-script" onclick="script2()">2) Média Escolar</button>
+            <button class="btn-script" onclick="script3()">3) Maior de Três</button>
+            <button class="btn-script" onclick="script4()">4) Inverter Variáveis</button>
+            <button class="btn-script" onclick="script5()">5) Maior e Menor</button>
+            <button class="btn-script" onclick="script6()">6) Ordem Decrescente</button>
+            <button class="btn-script" onclick="script7()">7) Turno de Estudo</button>
+            <button class="btn-script" onclick="script8()">8) Reajuste Salarial</button>
+            <button class="btn-script" onclick="script9()">9) Folha de Pagamento</button>
+            <button class="btn-script" onclick="script10()">10) Dia da Semana</button>
+            <button class="btn-script" onclick="script11()">11) Conceito Aluno</button>
+            <button class="btn-script" onclick="script12()">12) Tipo de Triângulo</button>
+            <button class="btn-script" onclick="script13()">13) Equação 2º Grau</button>
+            <button class="btn-script" onclick="script14()">14) Ano Bissexto</button>
+            <button class="btn-script" onclick="script15()">15) Validar Data</button>
+            <button class="btn-script" onclick="script16()">16) Par ou Ímpar</button>
+            <button class="btn-script" onclick="script17()">17) Centenas, Dezenas...</button>
+            <button class="btn-script" onclick="script18()">18) Caixa Eletrônico</button>
+            <button class="btn-script" onclick="script19()">19) Inteiro ou Decimal</button>
+            <button class="btn-script" onclick="script20()">20) Operações Avançadas</button>
+            <button class="btn-script" onclick="script21()">21) Investigação Crime</button>
+            <button class="btn-script" onclick="script22()">22) Posto de Combustível</button>
+            <button class="btn-script" onclick="script23()">23) Frutaria</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Fase 1: Prova Prática de JavaScript - Desenvolvido por [SEU NOME]</p>
+    </footer>
+
+    <script>
+        /* ==================== ANIMAÇÃO DE ESTRELAS CAINDO ==================== */
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let stars = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height;
+                this.length = Math.random() * 80 + 20;
+                this.speed = Math.random() * 5 + 4;
+                this.opacity = Math.random() * 0.6 + 0.4;
+            }
+            update() {
+                this.y += this.speed;
+                this.x += this.speed * 0.2; // inclinação leve
+                if (this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.lineWidth = 1.5;
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x - this.length * 0.2, this.y - this.length);
+                ctx.stroke();
+            }
+        }
+
+        for (let i = 0; i < 40; i++) {
+            stars.push(new Star());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+
+        /* ==================== OS 23 SCRIPTS REQUISITADOS ==================== */
+
+        // 1) Vogal ou Consoante
+        function script1() {
+            let letra = prompt("Digite uma única letra:").toLowerCase();
+            if (!letra || letra.length !== 1 || !/[a-z]/i.test(letra)) {
+                alert("Por favor, digite apenas uma letra válida.");
+                return;
+            }
+            if ("aeiou".includes(letra)) {
+                alert(`A letra '${letra}' é uma VOGAL.`);
+            } else {
+                alert(`A letra '${letra}' é uma CONSOANTE.`);
+            }
+        }
+
+        // 2) Média do Aluno
+        function script2() {
+            let n1 = parseFloat(prompt("Digite a primeira nota:"));
+            let n2 = parseFloat(prompt("Digite a segunda nota:"));
+            let media = (n1 + n2) / 2;
+            
+            if (media === 10) {
+                alert(`Média: ${media.toFixed(1)} - Aprovado com Distinção!`);
+            } else if (media >= 7) {
+                alert(`Média: ${media.toFixed(1)} - Aprovado!`);
+            } else {
+                alert(`Média: ${media.toFixed(1)} - Reprovado!`);
+            }
+        }
+
+        // 3) Maior de três inteiros
+        function script3() {
+            let n1 = parseInt(prompt("Digite o primeiro número inteiro:"));
+            let n2 = parseInt(prompt("Digite o segundo número inteiro:"));
+            let n3 = parseInt(prompt("Digite o terceiro número inteiro:"));
+            let maior = Math.max(n1, n2, n3);
+            alert(`O maior número digitado foi: ${maior}`);
+        }
+
+        // 4) Inverter variáveis
+        function script4() {
+            let a = parseInt(prompt("Digite o valor para a variável A:"));
+            let b = parseInt(prompt("Digite o valor para a variável B:"));
+            let antes = `Antes: A = ${a}, B = ${b}`;
+            
+            let temp = a;
+            a = b;
+            b = temp;
+            
+            let depois = `Depois: A = ${a}, B = ${b}`;
+            alert(`${antes}\n${depois}`);
+        }
+
+        // 5) Maior e Menor de três
+        function script5() {
+            let n1 = parseInt(prompt("Número 1:"));
+            let n2 = parseInt(prompt("Número 2:"));
+            let n3 = parseInt(prompt("Número 3:"));
+            let maior = Math.max(n1, n2, n3);
+            let menor = Math.min(n1, n2, n3);
+            alert(`Maior: ${maior}\nMenor: ${menor}`);
+        }
+
+        // 6) Ordem Decrescente
+        function script6() {
+            let n1 = parseFloat(prompt("Número 1:"));
+            let n2 = parseFloat(prompt("Número 2:"));
+            let n3 = parseFloat(prompt("Número 3:"));
+            let numeros = [n1, n2, n3].sort((a, b) => b - a);
+            alert(`Ordem Decrescente: ${numeros.join(" -> ")}`);
+        }
+
+        // 7) Turno de Estudo
+        function script7() {
+            let turno = prompt("Em que turno você estuda? (M-Matutino, V-Vespertino, N-Noturno):").toUpperCase();
+            if (turno === "M") alert("Bom Dia!");
+            else if (turno === "V") alert("Boa Tarde!");
+            else if (turno === "N") alert("Boa Noite!");
+            else alert("Valor Inválido!");
+        }
+
+        // 8) Reajuste Salarial (Organizações Tabajara)
+        function script8() {
+            let salario = parseFloat(prompt("Digite o salário atual do colaborador:"));
+            let percentual = 0;
+            
+            if (salario <= 1480) percentual = 20;
+            else if (salario <= 1900) percentual = 15;
+            else if (salario <= 2500) percentual = 10;
+            else percentual = 5;
+
+            let valorAumento = salario * (percentual / 100);
+            let novoSalario = salario + valorAumento;
+
+            alert(`Salário antes do reajuste: R$ ${salario.toFixed(2)}\n` +
+                  `Percentual de aumento aplicado: ${percentual}%\n` +
+                  `Valor do aumento: R$ ${valorAumento.toFixed(2)}\n` +
+                  `Novo salário após o aumento: R$ ${novoSalario.toFixed(2)}`);
+        }
+
+        // 9) Folha de Pagamento
+        function script9() {
+            let valorHora = parseFloat(prompt("Digite o valor da sua hora de trabalho:"));
+            let horasMes = parseFloat(prompt("Digite a quantidade de horas trabalhadas no mês:"));
+            
+            let salarioBruto = valorHora * horasMes;
+            let irPercentual = 0;
+
+            if (salarioBruto <= 2112) irPercentual = 0;
+            else if (salarioBruto <= 2826.65) irPercentual = 7.5;
+            else if (salarioBruto <= 3751.05) irPercentual = 15;
+            else if (salarioBruto <= 4664.68) irPercentual = 22.5;
+            else irPercentual = 27.5;
+
+            let descontoIR = salarioBruto * (irPercentual / 100);
+            let descontoSindicato = salarioBruto * 0.03;
+            let fgts = salarioBruto * 0.11;
+            let totalDescontos = descontoIR + descontoSindicato;
+            let salarioLiquido = salarioBruto - totalDescontos;
+
+            alert(
+                `Salário Bruto: (${valorHora} * ${horasMes}) : R$ ${salarioBruto.toFixed(2)}\n` +
+                `(-) IR (${irPercentual}%) : R$ ${descontoIR.toFixed(2)}\n` +
+                `(-) Sindicato (3%) : R$ ${descontoSindicato.toFixed(2)}\n` +
+                `FGTS (11% - Não descontado) : R$ ${fgts.toFixed(2)}\n` +
+                `Total de descontos : R$ ${totalDescontos.toFixed(2)}\n` +
+                `Salário Liquido : R$ ${salarioLiquido.toFixed(2)}`
+            );
+        }
+
+        // 10) Dia da Semana
+        function script10() {
+            let dia = prompt("Digite um número para o dia da semana (1-7):");
+            const dias = {
+                "1": "Domingo", "2": "Segunda-feira", "3": "Terça-feira", 
+                "4": "Quarta-feira", "5": "Quinta-feira", "6": "Sexta-feira", "7": "Sábado"
+            };
+            alert(dias[dia] || "Valor Inválido!");
+        }
+
+        // 11) Conceito Nota Semestral
+        function script11() {
+            let n1 = parseFloat(prompt("Nota Parcial 1:"));
+            let n2 = parseFloat(prompt("Nota Parcial 2:"));
+            let media = (n1 + n2) / 2;
+            let conceito = "";
+
+            if (media >= 9 && media <= 10) conceito = "A";
+            else if (media >= 7.5) conceito = "B";
+            else if (media >= 6) conceito = "C";
+            else if (media >= 4) conceito = "D";
+            else conceito = "E";
+
+            let situacao = "APROVADO";
+            if (conceito === "D" || conceito === "E") situacao = "REPROVADO";
+
+            alert(`Nota 1: ${n1}\nNota 2: ${n2}\nMédia: ${media.toFixed(2)}\nConceito: ${conceito}\nSituação: ${situacao}`);
+        }
+
+        // 12) Tipo de Triângulo
+        function script12() {
+            let l1 = parseFloat(prompt("Lado 1:"));
+            let l2 = parseFloat(prompt("Lado 2:"));
+            let l3 = parseFloat(prompt("Lado 3:"));
+
+            if ((l1 + l2 > l3) && (l1 + l3 > l2) && (l2 + l3 > l1)) {
+                if (l1 === l2 && l2 === l3) alert("É um Triângulo Equilátero.");
+                else if (l1 === l2 || l1 === l3 || l2 === l3) alert("É um Triângulo Isósceles.");
+                else alert("É um Triângulo Escaleno.");
+            } else {
+                alert("Os valores informados não podem formar um triângulo.");
+            }
+        }
+
+        // 13) Raízes de Equação do 2º Grau
+        function script13() {
+            let a = parseFloat(prompt("Informe o valor de 'a':"));
+            if (a === 0) {
+                alert("Se 'a' é igual a zero, a equação não é de segundo grau.");
+                return;
+            }
+            let b = parseFloat(prompt("Informe o valor de 'b':"));
+            let c = parseFloat(prompt("Informe o valor de 'c':"));
+
+            let delta = (b * b) - (4 * a * c);
+
+            if (delta < 0) {
+                alert(`Delta = ${delta}. A equação não possui raízes reais.`);
+            } else if (delta === 0) {
+                let r = -b / (2 * a);
+                alert(`Delta = 0. A equação possui uma raiz real: ${r}`);
+            } else {
+                let r1 = (-b + Math.sqrt(delta)) / (2 * a);
+                let r2 = (-b - Math.sqrt(delta)) / (2 * a);
+                alert(`Delta = ${delta}.\nRaiz 1: ${r1.toFixed(2)}\nRaiz 2: ${r2.toFixed(2)}`);
+            }
+        }
+
+        // 14) Ano Bissexto
+        function script14() {
+            let ano = parseInt(prompt("Informe o ano:"));
+            if ((ano % 4 === 0 && ano % 100 !== 0) || (ano % 400 === 0)) {
+                alert(`O ano ${ano} é BISSEXTO.`);
+            } else {
+                alert(`O ano ${ano} NÃO É bissexto.`);
+            }
+        }
+
+        // 15) Validar Data (dd/mm/aaaa)
+        function script15() {
+            let dataStr = prompt("Digite uma data no formato dd/mm/aaaa:");
+            let partes = dataStr.split("/");
+            if (partes.length !== 3) {
+                alert("Formato inválido.");
+                return;
+            }
+            let dia = parseInt(partes[0]);
+            let mes = parseInt(partes[1]);
+            let ano = parseInt(partes[2]);
+
+            if (mes < 1 || mes > 12 || dia < 1 || ano < 1) {
+                alert("Data Inválida.");
+                return;
+            }
+
+            let diasNoMes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            // Correção de ano bissexto para fevereiro
+            if ((ano % 4 === 0 && ano % 100 !== 0) || (ano % 400 === 0)) {
+                diasNoMes[1] = 29;
+            }
+
+            if (dia <= diasNoMes[mes - 1]) {
+                alert("A data inserida é VÁLIDA!");
+            } else {
+                alert("Data Inválida para esse mês/ano.");
+            }
+        }
+
+        // 16) Par ou Ímpar
+        function script16() {
+            let num = parseInt(prompt("Digite um número inteiro:"));
+            if (num % 2 === 0) alert(`${num} é PAR.`);
+            else alert(`${num} é ÍMPAR.`);
+        }
+
+        // 17) Centenas, dezenas e unidades
+        function script17() {
+            let num = parseInt(prompt("Digite um número inteiro menor que 1000:"));
+            if (isNaN(num) || num >= 1000 || num < 0) {
+                alert("Valor inválido.");
+                return;
+            }
+
+            let centenas = Math.floor(num / 100);
+            let dezenas = Math.floor((num % 100) / 10);
+            let unidades = num % 10;
+
+            let partes = [];
+
+            if (centenas > 0) partes.push(centenas === 1 ? "1 centena" : `${centenas} centenas`);
+            if (dezenas > 0) partes.push(dezenas === 1 ? "1 dezena" : `${dezenas} dezenas`);
+            if (unidades > 0) partes.push(unidades === 1 ? "1 unidade" : `${unidades} unidades`);
+
+            let resultado = "";
+            if (partes.length === 3) resultado = `${partes[0]}, ${partes[1]} e ${partes[2]}`;
+            else if (partes.length === 2) resultado = `${partes[0]} e ${partes[1]}`;
+            else if (partes.length === 1) resultado = partes[0];
+            else resultado = "0 unidades";
+
+            alert(`${num} = ${resultado}`);
+        }
+
+        // 18) Caixa Eletrônico
+        function script18() {
+            let saque = parseInt(prompt("Valor do saque (Mínimo R$10, Máximo R$900):"));
+            if (saque < 10 || saque > 900 || isNaN(saque)) {
+                alert("Valor não permitido.");
+                return;
+            }
+
+            let valorRestante = saque;
+            let notas100 = Math.floor(valorRestante / 100);
+            valorRestante %= 100;
+            
+            let notas50 = Math.floor(valorRestante / 50);
+            valorRestante %= 50;
+
+            let notas20 = Math.floor(valorRestante / 20);
+            valorRestante %= 20;
+
+            let notas10 = Math.floor(valorRestante / 10);
+            
+            let msg = `Para sacar R$ ${saque}, serão fornecidas:\n`;
+            if (notas100 > 0) msg += `${notas100} nota(s) de R$ 100\n`;
+            if (notas50 > 0) msg += `${notas50} nota(s) de R$ 50\n`;
+            if (notas20 > 0) msg += `${notas20} nota(s) de R$ 20\n`;
+            if (notas10 > 0) msg += `${notas10} nota(s) de R$ 10\n`;
+
+            alert(msg);
+        }
+
+        // 19) Inteiro ou Decimal
+        function script19() {
+            let num = parseFloat(prompt("Digite qualquer número:"));
+            if (num === Math.round(num)) alert(`${num} é um número INTEIRO.`);
+            else alert(`${num} é um número DECIMAL.`);
+        }
+
+        // 20) Operações Avançadas e Características
+        function script20() {
+            let n1 = parseFloat(prompt("Digite o 1º número:"));
+            let n2 = parseFloat(prompt("Digite o 2º número:"));
+            let operacao = prompt("Escolha a operação (+ , - , * , /):");
+            let resultado;
+
+            switch(operacao) {
+                case "+": resultado = n1 + n2; break;
+                case "-": resultado = n1 - n2; break;
+                case "*": resultado = n1 * n2; break;
+                case "/": resultado = n1 / n2; break;
+                default: alert("Operação inválida."); return;
+            }
+
+            let parImpar = (Math.round(resultado) % 2 === 0) ? "par" : "ímpar";
+            let posNeg = (resultado >= 0) ? "positivo" : "negativo";
+            let intDec = (resultado === Math.round(resultado)) ? "inteiro" : "decimal";
+
+            alert(`Resultado da operação: ${resultado}\nO número é: ${parImpar}, ${posNeg} e ${intDec}.`);
+        }
+
+        // 21) Jogo da Investigação (Crime)
+        function script21() {
+            let p1 = confirm("Telefonou para a vítima?");
+            let p2 = confirm("Esteve no local do crime?");
+            let p3 = confirm("Mora perto da vítima?");
+            let p4 = confirm("Devia para a vítima?");
+            let p5 = confirm("Já trabalhou com a vítima?");
+
+            let sim = [p1, p2, p3, p4, p5].filter(Boolean).length;
+            let classificacao = "Inocente";
+
+            if (sim === 5) classificacao = "Assassino";
+            else if (sim === 3 || sim === 4) classificacao = "Cúmplice";
+            else if (sim === 2) classificacao = "Suspeita";
+
+            alert(`Respostas positivas: ${sim}\nClassificação final: ${classificacao}`);
+        }
+
+        // 22) Posto de Combustível
+        function script22() {
+            let litros = parseFloat(prompt("Quantos litros vendidos?"));
+            let tipo = prompt("Tipo de combustível (A-Álcool / G-Gasolina):").toUpperCase();
+            
+            let precoAlcool = 4.39;
+            let precoGasolina = 6.79;
+            let valorTotal = 0;
+
+            if (tipo === 'A') {
+                let desconto = litros <= 20 ? 0.03 : 0.05;
+                valorTotal = litros * (precoAlcool * (1 - desconto));
+            } else if (tipo === 'G') {
+                let desconto = litros <= 20 ? 0.04 : 0.06;
+                valorTotal = litros * (precoGasolina * (1 - desconto));
+            } else {
+                alert("Tipo de combustível inválido.");
+                return;
+            }
+
+            alert(`Total a pagar: R$ ${valorTotal.toFixed(2)}`);
+        }
+
+        // 23) Loja de Frutas (Frutaria)
+        function script23() {
+            let kgMorango = parseFloat(prompt("Quantidade (em Kg) de Morangos:"));
+            let kgMaca = parseFloat(prompt("Quantidade (em Kg) de Maçãs:"));
+
+            let precoMorango = kgMorango <= 5 ? 24.00 : 20.00;
+            let precoMaca = kgMaca <= 5 ? 14.80 : 12.40;
+
+            let totalMorango = kgMorango * precoMorango;
+            let totalMaca = kgMaca * precoMaca;
+
+            let pesoTotal = kgMorango + kgMaca;
+            let valorTotal = totalMorango + totalMaca;
+
+            if (pesoTotal > 12 || valorTotal > 180) {
+                valorTotal *= 0.90; // 10% de desconto adicional
+            }
+
+            alert(`Resumo do pedido:\n` +
+                  `Morangos: ${kgMorango}Kg -> R$ ${totalMorango.toFixed(2)}\n` +
+                  `Maçãs: ${kgMaca}Kg -> R$ ${totalMaca.toFixed(2)}\n` +
+                  `Valor Final com Descontos: R$ ${valorTotal.toFixed(2)}`);
+        }
+    </script>
+</body>
+</html>
